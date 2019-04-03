@@ -7,6 +7,8 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.tensorflow.lite.Interpreter;
 import android.app.Activity
+import android.graphics.Bitmap
+import android.util.Log
 import java.io.FileInputStream
 import java.io.IOException
 import java.nio.MappedByteBuffer
@@ -26,10 +28,21 @@ class MainActivity : AppCompatActivity() {
         val metrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(metrics)
         paintView.init(metrics)
+        //try to load the model into tflite
+        try {
+            tflite = Interpreter(loadModelFile(this@MainActivity, modelFile))
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
     }
 
     fun clearPaintView(view: View){
         paintView.clear()
+    }
+
+     fun onDetectClicked(view: View) {
+        //use the model to make prediction
     }
 
 
