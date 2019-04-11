@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PaintView extends View {
 
-    public static int BRUSH_SIZE = 100;
+    public static int BRUSH_SIZE = 50;
     public static final int DEFAULT_COLOR = Color.BLACK;
     public static final int DEFAULT_BG_COLOR = Color.WHITE;
     private static final float TOUCH_TOLERANCE = 4;
@@ -48,6 +48,10 @@ public class PaintView extends View {
 
         mEmboss = new EmbossMaskFilter(new float[]{1, 1, 1}, 0.4f, 6, 3.5f);
         mBlur = new BlurMaskFilter(5, BlurMaskFilter.Blur.NORMAL);
+    }
+
+    public void setCurrentColor(int currentColor) {
+        this.currentColor = currentColor;
     }
 
     public Bitmap getBitmap() {
